@@ -1,0 +1,17 @@
+require 'rake/testtask'
+
+Rake::TestTask.new(:test) do |t|
+  t.test_files = FileList['test/test_*.rb']
+end
+
+desc '付録の演習問題の解答をテスト'
+Rake::TestTask.new(:answers) do |t|
+  t.test_files = FileList['answers/test/test_*.rb']
+end
+
+desc 'ReDoS 再現実験'
+task :bench do
+  ruby 'bench/redos.rb'
+end
+
+task default: %i[test answers]
